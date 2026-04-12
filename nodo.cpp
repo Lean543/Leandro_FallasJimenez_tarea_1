@@ -5,8 +5,8 @@ Nodo::Nodo(int _valor) : valor{_valor} {};
 
 Nodo::~Nodo()
 {
-    std::cout << "Llamando destructor en nodo " << this->valor << std::end1;
-    if (this->siguiente) != nullptr;
+    std::cout << "Llamando destructor en nodo " << this->valor << std::endl;
+    if (this->siguiente != nullptr)
     {
         delete siguiente;
     }
@@ -23,12 +23,27 @@ void Nodo::setValor(int valor)
     this->valor = valor;
 }
 
+void Nodo::setAnterior(Nodo *ant) //*asigna al nodo actual como nodo anterior el nodo que se la pasa
+{
+    this->anterior = ant;
+}
+
+Nodo *Nodo::getAnterior() //*busca cual es el nodo anterior del actual y lo devuelve
+{
+    return this->anterior;
+}
+
 void Nodo::setSiguiente(Nodo *sig)
 {
-    this->siguiente =sig;
+    this->siguiente = sig;
 }
 
 Nodo *Nodo::getSiguiente()
 {
     return this->siguiente;
+}
+
+void Nodo::imprimir()
+{
+    std::cout << "Nodo [" << this->getValor() << "]" << std::endl;
 }

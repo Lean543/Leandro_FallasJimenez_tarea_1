@@ -3,12 +3,24 @@ class Nodo
 private:
     int valor;
     Nodo *siguiente = nullptr;
+    Nodo *anterior = nullptr;
 
 public:
     Nodo(int);
+
     ~Nodo();
-    int getvalor();
-    void *setSiguiente(int);
+
+    int getValor();
+
+    void setValor(int);
+
+    Nodo *getAnterior();
+
+    void setAnterior(Nodo *);
+
     Nodo *getSiguiente();
-    void getSiguiente(Nodo *);
+
+    void setSiguiente(Nodo *);
+
+    void imprimir();
 };

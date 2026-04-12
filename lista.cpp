@@ -1,14 +1,16 @@
 #include "lista.hpp"
 #include <iostream>
 
-Lista::Lista() : inicial{nullptr} {};
+Lista::Lista() : inicial{nullptr} {};//asignar un valor null a el elemento inicial de la lista
 
-Lista::~Lista()
-{
+Lista::~Lista()//destructor de los objetos tipo Lista
+{   
+    std::cout << "Destruyendo nodos de la lista: {" << std::endl;
     if (this->inicial != nullptr)
     {
         delete inicial;
     }
+    std::cout << "}" << std::endl;
 }
 
 void Lista::insertar(int valor)
@@ -16,18 +18,33 @@ void Lista::insertar(int valor)
     Nodo *nuevo = new Nodo(valor);
 
     Nodo *actual = this->inicial;
+
     if (actual == nullptr)
     {
         this->inicial = nuevo;
     }
     else
     {
-        while (actual->getSiguiente() != nullptr)
+        while (actual->getSiguiente() != nullptr) //el ultimo nodo tiene como siguiente a un nodo vacío
         {
-            actual = actual->getSiguiente();
+            actual = actual->getSiguiente(); //avanzar el nodo actual hasta el último de la lista
         }
-        actual->setSiguiente(nuevo);
+        nuevo->setAnterior(actual); //*asignarle al nodo nuevo como nodo anterior al nodo actual
+        actual->setSiguiente(nuevo); //asignarle al nodo actual como nodo siguiente al nodo nuevo
     }
+}
+
+void Lista::contar()
+{
+    int counter = 0;
+    Nodo *actual = this->inicial;
+    while (actual != nullptr)
+    {
+        actual = actual->getSiguiente();
+        counter += 1;
+    }
+
+    std::cout << "El número de elementos de la lista es: " << counter << std::endl;
 }
 
 void Lista::imprimir()
@@ -41,3 +58,95 @@ void Lista::imprimir()
     }
     std::cout << "}" << std::endl;
 }
+
+void Lista::imprimir_reverso()
+{   
+    Nodo *actual = this->inicial; //creacion de un objeto nodo temporal llamado actual para usarlo como
+    //puntero de la lista al asignarlo como nodo incial de esta
+    while (actual->getSiguiente() != nullptr)
+    {
+        actual = actual->getSiguiente(); //*avanzar el nodo actual hasta el último nodo de la lista
+    }
+    std::cout << "Lista: {" << std::endl;
+    while (actual != nullptr) //*el primer nodo tiene como anterior a un nodo vacío entonces en ese
+    //momento ya no entra al while y no lo imprime
+    {
+        actual->imprimir();
+        actual = actual->getAnterior(); //*retroceder el nodo actual (nodo puntero) hasta el primero de la lista
+    }
+    std::cout << "}" << std::endl;
+}
+
+void Lista::eliminar()
+{
+    int valor0;
+    std::cout << "Ingrese el valor del nodo a aliminar: ";
+    std::cin >> valor0;
+    std::cout << "Ingresaste: " << valor0 << std::endl;
+    Nodo *actual = this->inicial;
+
+    while (actual != nullptr)
+    {
+        if (actual->getValor() == valor0) //*si se encuentra un nodo con ese numero hagale lo siguiente:
+        {
+            Nodo *anterior = actual->getAnterior(); //*asignar a un objeto tipo nodo temporal llamado anterior
+            // el nodo anterior al nodo actual en el recorrido
+            Nodo *siguiente = actual->getSiguiente(); //*asignar a un objeto tipo nodo temporal llamado siguiente
+            // el nodo siguiente al nodo actual en el recorrido 
+
+            if (anterior != nullptr) //*if para que si se va a eliminar el nodo inicial de la lista no acceda a una parte
+            //de la memoria vacia al acceder al nodo anterior al primero
+            {
+                anterior->setSiguiente(siguiente);//*asigne al nodo anterior como nodo siguiente al
+                //nodo siguiente al actual 
+            }
+            else
+                this->inicial = siguiente; //*asigne el nodo siguiente al inicial como nuevo inicial
+
+            if (siguiente != nullptr) //*if para que si se va a eliminar el nodo final de la lista no acceda a una parte
+            //de la memoria vacia al acceder al nodo siguiente al ultimo
+            {
+                siguiente->setAnterior(anterior);//*asigne al nodo siguiente como nodo siguiente al
+                //nodo anterior al actual 
+            }           
+            actual->setSiguiente(nullptr);//*evita que el destructor borre los nodos siguientes al actual
+            delete actual;
+            return; //*si ya borró el nodo salga de la función y no siga :)
+        }
+        else //*si el nodo no tiene ese número:
+        {
+            actual = actual->getSiguiente(); //*avance en la lista
+        }
+    }
+
+    std::cout << "No se encontró el nodo a eliminar" << std::endl; //*si no se encuentra el
+    //nodo en la lista, devolver un mensaje
+}
+
+Lista* Lista::filtrar()
+{
+    int valor0;
+    std::cout << "Ingrese el valor mínimo del nodo desde el que se debe copiar: ";
+    std::cin >> valor0;
+    std::cout << "Ingresaste: " << valor0 << std::endl;
+    Nodo *actual = this->inicial;
+    Lista *lista2 = new Lista(); //*creación de nuevo objeto lista (nueva lista filtrada)
+
+    while (actual != nullptr)
+    {
+        if (actual->getValor() > valor0) //*si se encuentra un nodo con valor mayor a es numero haga lo siguiente:
+        {
+            lista2->insertar(actual->getValor()); //*inserte un nodo con ese valor a la nueva lista
+        }
+        actual = actual->getSiguiente(); //*avance en la lista normal
+    }
+
+    if(lista2->inicial == nullptr)
+    {
+        std::cout << "No se encontró un numero mayor en la lista, se devuelve una lista vacía" << std::endl; //*si no 
+        //se encuentra un nodo mayor en la lista, devolver un mensaje
+    }
+
+    return lista2; //devolver la nueva lista filtrada
+}
+
