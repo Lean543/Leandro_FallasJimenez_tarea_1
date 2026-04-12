@@ -23,7 +23,7 @@ void Nodo::setValor(int valor)
     this->valor = valor;
 }
 
-void Nodo::setAnterior(Nodo *ant) //*asigna al nodo actual como nodo anterior el nodo que se la pasa
+void Nodo::setAnterior(Nodo *ant) //*asigna al nodo anterior del actual el nodo que se la pasa
 {
     this->anterior = ant;
 }
