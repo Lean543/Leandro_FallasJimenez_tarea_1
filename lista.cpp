@@ -1,9 +1,9 @@
 #include "lista.hpp"
 #include <iostream>
 
-Lista::Lista() : inicial{nullptr} {};//asignar un valor null a el elemento inicial de la lista
+Lista::Lista() : inicial{nullptr} {}; //asignar un valor null a el elemento inicial de la lista
 
-Lista::~Lista()//destructor de los objetos tipo Lista
+Lista::~Lista() //destructor de los objetos tipo Lista
 {   
     std::cout << "Destruyendo nodos de la lista: {" << std::endl;
     if (this->inicial != nullptr)
@@ -15,13 +15,13 @@ Lista::~Lista()//destructor de los objetos tipo Lista
 
 void Lista::insertar(int valor)
 {
-    Nodo *nuevo = new Nodo(valor);
+    Nodo *nuevo = new Nodo(valor); //estos objetos tipo nodo se pierden luego de terminar la función porque no se retornan entonces todo bien
 
-    Nodo *actual = this->inicial;
+    Nodo *actual = this->inicial; //asignele a un objeto tipo nodo temporal llamado actual el nodo inicial de la lista
 
-    if (actual == nullptr)
+    if (actual == nullptr) //si el puntero del nodo no apunta a nada, osea: si la lista está vacia, haga lo siguiente:
     {
-        this->inicial = nuevo;
+        this->inicial = nuevo; //signe como nodo inicial el nuevo nodo recien creado y por tanto el nuevo nodo también pasaría a ser el actual
     }
     else
     {
@@ -97,7 +97,7 @@ void Lista::eliminar()
             if (anterior != nullptr) //*if para que si se va a eliminar el nodo inicial de la lista no acceda a una parte
             //de la memoria vacia al acceder al nodo anterior al primero
             {
-                anterior->setSiguiente(siguiente);//*asigne al nodo anterior como nodo siguiente al
+                anterior->setSiguiente(siguiente); //*asigne al nodo anterior como nodo siguiente al
                 //nodo siguiente al actual 
             }
             else
@@ -109,7 +109,7 @@ void Lista::eliminar()
                 siguiente->setAnterior(anterior);//*asigne al nodo siguiente como nodo siguiente al
                 //nodo anterior al actual 
             }           
-            actual->setSiguiente(nullptr);//*evita que el destructor borre los nodos siguientes al actual
+            actual->setSiguiente(nullptr); //*evita que el destructor borre los nodos siguientes al actual
             delete actual;
             return; //*si ya borró el nodo salga de la función y no siga :)
         }
