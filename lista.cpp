@@ -79,15 +79,15 @@ void Lista::imprimir_reverso()
 
 void Lista::eliminar()
 {
-    int valor0;
+    int referencia;
     std::cout << "Ingrese el valor del nodo a aliminar: ";
-    std::cin >> valor0;
-    std::cout << "Ingresaste: " << valor0 << std::endl;
+    std::cin >> referencia;
+    std::cout << "Ingresaste: " << referencia << std::endl;
     Nodo *actual = this->inicial;
 
     while (actual != nullptr)
     {
-        if (actual->getValor() == valor0) //*si se encuentra un nodo con ese numero hagale lo siguiente:
+        if (actual->getValor() == referencia) //*si se encuentra un nodo con ese numero hagale lo siguiente:
         {
             Nodo *anterior = actual->getAnterior(); //*asignar a un objeto tipo nodo temporal llamado anterior
             // el nodo anterior al nodo actual en el recorrido
@@ -125,16 +125,16 @@ void Lista::eliminar()
 
 Lista* Lista::filtrar()
 {
-    int valor0;
+    int referencia;
     std::cout << "Ingrese el valor mínimo del nodo desde el que se debe copiar: ";
-    std::cin >> valor0;
-    std::cout << "Ingresaste: " << valor0 << std::endl;
+    std::cin >> referencia;
+    std::cout << "Ingresaste: " << referencia << std::endl;
     Nodo *actual = this->inicial;
     Lista *lista2 = new Lista(); //*creación de nuevo objeto lista (nueva lista filtrada)
 
     while (actual != nullptr)
     {
-        if (actual->getValor() > valor0) //*si se encuentra un nodo con valor mayor a es numero haga lo siguiente:
+        if (actual->getValor() > referencia) //*si se encuentra un nodo con valor mayor a es numero haga lo siguiente:
         {
             lista2->insertar(actual->getValor()); //*inserte un nodo con ese valor a la nueva lista
         }
