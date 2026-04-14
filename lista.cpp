@@ -89,10 +89,10 @@ void Lista::eliminar()
     {
         if (actual->getValor() == referencia) //*si se encuentra un nodo con ese numero hagale lo siguiente:
         {
-            Nodo *anterior = actual->getAnterior(); //*asignar a un objeto tipo nodo temporal llamado anterior
-            // el nodo anterior al nodo actual en el recorrido
-            Nodo *siguiente = actual->getSiguiente(); //*asignar a un objeto tipo nodo temporal llamado siguiente
-            // el nodo siguiente al nodo actual en el recorrido 
+            Nodo *anterior = actual->getAnterior(); //*asignar a un objeto puntero tipo nodo temporal llamado anterior
+            // al puntero del nodo anterior al actual en el recorrido
+            Nodo *siguiente = actual->getSiguiente(); //*asignar a un objeto puntero tipo nodo temporal llamado siguiente
+            // al puntero del nodo siguiente al actual en el recorrido 
 
             if (anterior != nullptr) //*if para que si se va a eliminar el nodo inicial de la lista no acceda a una parte
             //de la memoria vacia al acceder al nodo anterior al primero
@@ -130,7 +130,7 @@ Lista* Lista::filtrar()
     std::cin >> referencia;
     std::cout << "Ingresaste: " << referencia << std::endl;
     Nodo *actual = this->inicial;
-    Lista *lista2 = new Lista(); //*creación de nuevo objeto lista (nueva lista filtrada)
+    Lista *lista2 = new Lista(); //*creación de nuevo objeto puntero lista (puntero a nueva lista filtrada)
 
     while (actual != nullptr)
     {

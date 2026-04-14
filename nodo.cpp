@@ -10,7 +10,6 @@ Nodo::~Nodo()
     {
         delete siguiente;
     }
-
 }
 
 int Nodo::getValor()

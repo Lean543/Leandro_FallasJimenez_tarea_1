@@ -1,0 +1,42 @@
+# 🔹 Ejecutables
+*.out
+*.exe
+*.elf
+
+# 🔹 Archivos objeto
+*.o
+*.obj
+
+# 🔹 Archivos de librerías
+*.a
+*.so
+*.dll
+
+# 🔹 Archivos temporales
+*.log
+*.tmp
+*.swp
+*~
+
+# 🔹 Archivos generados por Make
+Makefile.in
+aclocal.m4
+autom4te.cache/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# 🔹 Carpetas de compilación
+build/
+bin/
+
+# 🔹 Archivos de depuración
+*.dSYM/
+*.stackdump
+
+# 🔹 Archivos de IDEs (opcional)
+.vscode/
+.idea/
+
+# 🔹 MacOS
+.DS_Store
