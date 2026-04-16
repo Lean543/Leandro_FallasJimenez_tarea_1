@@ -1,7 +1,7 @@
 #include "lista.hpp"
 #include <iostream>
 
-Lista::Lista() : inicial{nullptr} {}; //asignar un valor null a el elemento inicial de la lista
+Lista::Lista() : inicial{nullptr} {}; //crear un nodo inicial al hacer un objeto tipo lista y asignarle al atributo valor de este un puntero null
 
 Lista::~Lista() //destructor de los objetos tipo Lista
 {   
