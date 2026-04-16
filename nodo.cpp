@@ -1,7 +1,7 @@
 #include "nodo.hpp"
 #include <iostream>
 
-Nodo::Nodo(int _valor) : valor{_valor} {};
+Nodo::Nodo(int _valor) : valor{_valor} {}; //asignarle algo al atributo valor de los objetos tipo nodo que se creen
 
 Nodo::~Nodo()
 {
